@@ -34,7 +34,7 @@ var AllWeapons = []Weapon{{"Sword", 5, "A rusty looking blade used for close com
 func CreateCharacter() Character {
 	var name string
 	var class string
-	var weaponChoice string
+	//var weaponChoice string
 	fmt.Println("Please enter your name: ")
 	fmt.Scan(&name)
 
@@ -47,32 +47,32 @@ func CreateCharacter() Character {
 
 		switch class {
 		case "Warrior":
-			selectedClass = Character{name, class, 100, 100, 15, 10, Inventory{}, 1, Weapon{}, starterWeapons}
+			selectedClass = Character{name, class, 100, 100, 15, 10, Inventory{}, 1, starterWeapons[0], starterWeapons}
 		case "Mage":
-			selectedClass = Character{name, class, 70, 70, 20, 5, Inventory{}, 1, Weapon{}, starterWeapons}
+			selectedClass = Character{name, class, 70, 70, 20, 5, Inventory{}, 1, starterWeapons[1], starterWeapons}
 		case "Rogue":
-			selectedClass = Character{name, class, 80, 80, 12, 8, Inventory{}, 1, Weapon{}, starterWeapons}
+			selectedClass = Character{name, class, 80, 80, 12, 8, Inventory{}, 1, starterWeapons[2], starterWeapons}
 		default:
 			fmt.Println("Please enter a valid class!")
 			continue
 		}
 		break
 	}
-	fmt.Println("Choose a weapon: ")
-	fmt.Println("[Sword](+5 dmg), [Staff](+3 dmg), [Dagger](+2 dmg, sounds cool)")
-	fmt.Println("You choice hero: ")
-	fmt.Scanln(&weaponChoice)
+	// fmt.Println("Choose a weapon: ")
+	// fmt.Println("[Sword](+5 dmg), [Staff](+3 dmg), [Dagger](+2 dmg, sounds cool)")
+	// fmt.Println("You choice hero: ")
+	// fmt.Scanln(&weaponChoice)
 
-	switch weaponChoice {
-	case "Sword":
-		selectedClass.Weapon = Weapon{"Sword", 5, "A rusty looking blade used for close combat."}
-	case "Staff":
-		selectedClass.Weapon = Weapon{"Staff", 3, "A sturdy staff that can unleash anger upon your enemies. Nerd."}
-	case "Dagger":
-		selectedClass.Weapon = Weapon{"Dagger", 2, "A pocket dagger used for staby staby actions. It's quite shit but it sounds cool!"}
-	default:
-		selectedClass.Weapon = Weapon{"Fists", 0, "You are a man of culture, you enjoy an honest brawl."}
-	}
+	// switch weaponChoice {
+	// case "Sword":
+	// 	selectedClass.Weapon = Weapon{"Sword", 5, "A rusty looking blade used for close combat."}
+	// case "Staff":
+	// 	selectedClass.Weapon = Weapon{"Staff", 3, "A sturdy staff that can unleash anger upon your enemies. Nerd."}
+	// case "Dagger":
+	// 	selectedClass.Weapon = Weapon{"Dagger", 2, "A pocket dagger used for staby staby actions. It's quite shit but it sounds cool!"}
+	// default:
+	// 	selectedClass.Weapon = Weapon{"Fists", 0, "You are a man of culture, you enjoy an honest brawl."}
+	// }
 	selectedClass.UnlockedWeapons = []Weapon{AllWeapons[0], AllWeapons[1], AllWeapons[2]}
 	return selectedClass
 }

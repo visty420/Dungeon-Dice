@@ -18,6 +18,7 @@ func main() {
 
 		fmt.Println("Do you wish to equip a weapon? y/n")
 		var choice string
+		fmt.Scan(&choice)
 		if choice == "y" {
 			fmt.Println("Unlocked weapons: ")
 			for i, w := range player.UnlockedWeapons {
