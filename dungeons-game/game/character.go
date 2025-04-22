@@ -10,8 +10,9 @@ type Character struct {
 	Strength int
 	Defense  int
 	Inventory
-	Level  int
-	Weapon Weapon
+	Level           int
+	Weapon          Weapon
+	UnlockedWeapons []Weapon
 }
 
 type Weapon struct {
@@ -26,6 +27,10 @@ type Inventory struct {
 	AttackPotion  int
 }
 
+var AllWeapons = []Weapon{{"Sword", 5, "A rusty looking blade used for close combat."}, {"Staff", 3, "A sturdy staff that can unleash anger upon your enemies. Nerd."},
+	{"Dagger", 2, "A pocket dagger used for staby staby actions. It's quite shit but it sounds cool!"}, {"GreatAxe", 8, "Big, brutal and slow."},
+	{"Magic Wand", 6, "A wand bestowed to you by ancient powers."}, {"Poisoned Blade", 4, "It stings after you swing. Edgelord."}}
+
 func CreateCharacter() Character {
 	var name string
 	var class string
@@ -34,6 +39,7 @@ func CreateCharacter() Character {
 	fmt.Scan(&name)
 
 	var selectedClass Character
+	starterWeapons := []Weapon{AllWeapons[0], AllWeapons[1], AllWeapons[2]}
 
 	for {
 		fmt.Println("Please choose your class [Warrior|Mage|Rogue]")
@@ -41,11 +47,11 @@ func CreateCharacter() Character {
 
 		switch class {
 		case "Warrior":
-			selectedClass = Character{name, class, 100, 100, 15, 10, Inventory{}, 1, Weapon{}}
+			selectedClass = Character{name, class, 100, 100, 15, 10, Inventory{}, 1, Weapon{}, starterWeapons}
 		case "Mage":
-			selectedClass = Character{name, class, 70, 70, 20, 5, Inventory{}, 1, Weapon{}}
+			selectedClass = Character{name, class, 70, 70, 20, 5, Inventory{}, 1, Weapon{}, starterWeapons}
 		case "Rogue":
-			selectedClass = Character{name, class, 80, 80, 12, 8, Inventory{}, 1, Weapon{}}
+			selectedClass = Character{name, class, 80, 80, 12, 8, Inventory{}, 1, Weapon{}, starterWeapons}
 		default:
 			fmt.Println("Please enter a valid class!")
 			continue
@@ -67,6 +73,7 @@ func CreateCharacter() Character {
 	default:
 		selectedClass.Weapon = Weapon{"Fists", 0, "You are a man of culture, you enjoy an honest brawl."}
 	}
+	selectedClass.UnlockedWeapons = []Weapon{AllWeapons[0], AllWeapons[1], AllWeapons[2]}
 	return selectedClass
 }
 
