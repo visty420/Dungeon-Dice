@@ -7,7 +7,7 @@ import (
 
 func CombatRound(player *Character, monster *Monster) {
 	fmt.Println("\n---Combat Turn---")
-	playerRoll := rand.Intn(20) + 1
+	playerRoll := rand.Intn(20) + 1 + player.Weapon.DamageBonus
 	monsterRoll := rand.Intn(20) + 1
 
 	fmt.Printf("You roll: %d \n", playerRoll)
