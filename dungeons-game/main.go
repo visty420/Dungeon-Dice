@@ -22,7 +22,7 @@ func main() {
 		if choice == "y" {
 			fmt.Println("Unlocked weapons: ")
 			for i, w := range player.UnlockedWeapons {
-				fmt.Printf("[%d] %s (+%d dmg) -%s\n", i+1, w.Name, w.DamageBonus, w.Description)
+				fmt.Printf("[%d] %s (+%d dmg) - %s\n", i+1, game.ColorizeWeapon(w), w.DamageBonus, w.Description)
 			}
 			fmt.Println("Please enter weapon number: ")
 			var pick int

@@ -53,7 +53,21 @@ func TryDropWeapon(player *Character) {
 		if len(locked) > 0 {
 			newWeapon := locked[rand.Intn(len(locked))]
 			player.UnlockedWeapons = append(player.UnlockedWeapons, newWeapon)
-			fmt.Printf("You found a new weapon: %s. (%s)\n", newWeapon.Name, newWeapon.Description)
+
+			var flavor string
+			switch newWeapon.Rarity {
+			case RarityCommon:
+				flavor = "You find a basic but useful weapon."
+			case RarityRare:
+				flavor = "Your hands tremble with a surge of power!"
+			case RarityEpic:
+				flavor = "You feel like a one man army."
+			case RarityLegendary:
+				flavor = "You found a strange items that seems to be forged by the old gods. It radiates with power."
+			}
+
+			fmt.Printf("\n*** You found a %s! (%s) ***\n", ColorizeWeapon(newWeapon), newWeapon.Description)
+			fmt.Println(flavor)
 		} else {
 			fmt.Println("No weapons left to unlock. You are the weapon master.")
 		}

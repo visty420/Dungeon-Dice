@@ -19,6 +19,7 @@ type Weapon struct {
 	Name        string
 	DamageBonus int
 	Description string
+	Rarity      string
 }
 
 type Inventory struct {
@@ -27,9 +28,37 @@ type Inventory struct {
 	AttackPotion  int
 }
 
-var AllWeapons = []Weapon{{"Sword", 5, "A rusty looking blade used for close combat."}, {"Staff", 3, "A sturdy staff that can unleash anger upon your enemies. Nerd."},
-	{"Dagger", 2, "A pocket dagger used for staby staby actions. It's quite shit but it sounds cool!"}, {"GreatAxe", 8, "Big, brutal and slow."},
-	{"Magic Wand", 6, "A wand bestowed to you by ancient powers."}, {"Poisoned Blade", 4, "It stings after you swing. Edgelord."}}
+const (
+	RarityCommon    = "Common"
+	RarityRare      = "Rare"
+	RarityEpic      = "Epic"
+	RarityLegendary = "Legendary"
+)
+
+const (
+	ColorReset  = "\033[0m"
+	ColorBlue   = "\033[34m"
+	ColorPurple = "\033[35m"
+	ColorYellow = "\033[33m"
+)
+
+func ColorizeWeapon(w Weapon) string {
+	switch w.Rarity {
+	case RarityRare:
+		return fmt.Sprintf("%s[%s]%s %s", ColorBlue, w.Rarity, ColorReset, w.Name)
+	case RarityEpic:
+		return fmt.Sprintf("%s[%s]%s %s", ColorPurple, w.Rarity, ColorReset, w.Name)
+	case RarityLegendary:
+		return fmt.Sprintf("%s[%s]%s %s", ColorYellow, w.Rarity, ColorReset, w.Name)
+	default:
+		return fmt.Sprintf("[%s] %s", w.Rarity, w.Name)
+	}
+}
+
+var AllWeapons = []Weapon{{"Sword", 5, "A rusty looking blade used for close combat.", RarityCommon}, {"Staff", 3, "A sturdy staff that can unleash anger upon your enemies. Nerd.", RarityCommon},
+	{"Dagger", 2, "A pocket dagger used for staby staby actions. It's quite shit but it sounds cool!", RarityCommon}, {"GreatAxe", 8, "Big, brutal and slow.", RarityRare},
+	{"Magic Wand", 6, "A wand bestowed to you by ancient powers.", RarityRare}, {"Poisoned Blade", 4, "It stings after you swing. Edgelord.", RarityRare},
+	{"Flaming sword", 10, "Engulfed in the God Emperor's holy fire", RarityEpic}, {"Blade of eternity", 15, "Forged by the gods.", RarityLegendary}}
 
 func CreateCharacter() Character {
 	var name string
@@ -47,10 +76,13 @@ func CreateCharacter() Character {
 
 		switch class {
 		case "Warrior":
+			starterWeapons = []Weapon{AllWeapons[0]}
 			selectedClass = Character{name, class, 100, 100, 15, 10, Inventory{}, 1, starterWeapons[0], starterWeapons}
 		case "Mage":
+			starterWeapons = []Weapon{AllWeapons[1]}
 			selectedClass = Character{name, class, 70, 70, 20, 5, Inventory{}, 1, starterWeapons[1], starterWeapons}
 		case "Rogue":
+			starterWeapons = []Weapon{AllWeapons[2]}
 			selectedClass = Character{name, class, 80, 80, 12, 8, Inventory{}, 1, starterWeapons[2], starterWeapons}
 		default:
 			fmt.Println("Please enter a valid class!")
