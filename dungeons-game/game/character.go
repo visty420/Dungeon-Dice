@@ -13,6 +13,7 @@ type Character struct {
 	Level           int
 	Weapon          Weapon
 	UnlockedWeapons []Weapon
+	Gold            int
 }
 
 type Weapon struct {
@@ -77,13 +78,13 @@ func CreateCharacter() Character {
 		switch class {
 		case "Warrior":
 			starterWeapons = []Weapon{AllWeapons[0]}
-			selectedClass = Character{name, class, 100, 100, 15, 10, Inventory{}, 1, AllWeapons[0], starterWeapons}
+			selectedClass = Character{name, class, 100, 100, 15, 10, Inventory{}, 1, AllWeapons[0], starterWeapons, 50}
 		case "Mage":
 			starterWeapons = []Weapon{AllWeapons[1]}
-			selectedClass = Character{name, class, 70, 70, 20, 5, Inventory{}, 1, AllWeapons[1], starterWeapons}
+			selectedClass = Character{name, class, 70, 70, 20, 5, Inventory{}, 1, AllWeapons[1], starterWeapons, 50}
 		case "Rogue":
 			starterWeapons = []Weapon{AllWeapons[2]}
-			selectedClass = Character{name, class, 80, 80, 12, 8, Inventory{}, 1, AllWeapons[2], starterWeapons}
+			selectedClass = Character{name, class, 80, 80, 12, 8, Inventory{}, 1, AllWeapons[2], starterWeapons, 50}
 		default:
 			fmt.Println("Please enter a valid class!")
 			continue
