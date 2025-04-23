@@ -44,6 +44,8 @@ func main() {
 			fmt.Println("Cheeky choice mate -- your next encounter might be your last. But fine, continuing without opening the inventory")
 		}
 
+		//isBoss := player.Level%5 == 0
+
 		monster := game.SpawnMonsterForLevel(player.Level)
 		fmt.Printf("\nYou are facing %s", monster.NameWithType())
 		for monster.HP > 0 && player.HP > 0 {

@@ -34,12 +34,23 @@ var MonsterTemplates = []Monster{
 	{"Succubus", Succubus, 35, 15, false, "You'd tap that sucubussy, but you know better then to do so."},
 }
 
+var Bosses = []Monster{
+	{"Bone Crusher", Skeleton, 150, 25, true, "An ancient titan of bone and hatred. It swings with unstoppable force."},
+	{"Ivoryia, Fk=lame Witch", Demon, 130, 30, true, "Her eyes glow like embers. Her eyes.. a burning whisper."},
+	{"The Lich King", Wraith, 160, 28, true, "The air freezes. Time slows. Death watches you from behind hollow eyes."},
+}
+
 func SpawnMonsterForLevel(level int) Monster {
 	template := MonsterTemplates[rand.Intn(len(MonsterTemplates))]
 	hp := template.HP + rand.Intn(level*3)
 	str := template.Strength + level/2
 
 	return Monster{template.Name, template.Type, hp, str, template.IsBoss, template.Description}
+}
+
+func SpawnBossForLevel(level int) Monster {
+	index := (level/5 - 1) % len(Bosses)
+	return Bosses[index]
 }
 
 func (m *Monster) PreCombatEffect(player *Character) bool {
