@@ -7,7 +7,7 @@ import (
 
 func CombatRound(player *Character, monster *Monster) {
 	fmt.Println("\n---Combat Turn---")
-	playerRoll := rand.Intn(20) + 1 + player.Weapon.DamageBonus
+	playerRoll := rand.Intn(20) + 1 + player.Weapon.DamageBonus + player.TempAttackBoost
 	monsterRoll := rand.Intn(20) + 1
 
 	fmt.Printf("You roll: %d \n", playerRoll)
@@ -42,11 +42,13 @@ func CombatRound(player *Character, monster *Monster) {
 		monster.HP -= damage
 		fmt.Printf("You have hit the %s for %d damage! MonsterHP: %d\n", monster.Name, damage, monster.HP)
 	} else {
-		damage := monsterRoll - playerRoll - player.Defense
+		damage := monsterRoll - playerRoll - player.Defense - player.TempDefenseBoost
 		if damage < 0 {
 			damage = 0
 		}
 		player.HP -= damage
 		fmt.Printf("The %s hits you for %d damage! YourHP: %d\n", monster.Name, damage, player.HP)
 	}
+	player.TempAttackBoost = 0
+	player.DefensePotion = 0
 }

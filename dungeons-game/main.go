@@ -35,6 +35,15 @@ func main() {
 			}
 		}
 
+		fmt.Println("\nWould you like to open your inventory before this fight? (y/n)")
+		var inventoryChoice string
+		fmt.Scanln(&inventoryChoice)
+		if inventoryChoice == "y" {
+			game.UsePotionsMenu(&player)
+		} else {
+			fmt.Println("Cheeky choice mate -- your next encounter might be your last. But fine, continuing without opening the inventory")
+		}
+
 		monster := game.SpawnMonsterForLevel(player.Level)
 		for monster.HP > 0 && player.HP > 0 {
 			game.CombatRound(&player, &monster)
