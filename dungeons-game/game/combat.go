@@ -7,6 +7,9 @@ import (
 
 func CombatRound(player *Character, monster *Monster) {
 	fmt.Println("\n---Combat Turn---")
+	if monster.PreCombatEffect(player) {
+		return
+	}
 	playerRoll := rand.Intn(20) + 1 + player.Weapon.DamageBonus + player.TempAttackBoost
 	monsterRoll := rand.Intn(20) + 1
 

@@ -45,6 +45,7 @@ func main() {
 		}
 
 		monster := game.SpawnMonsterForLevel(player.Level)
+		fmt.Printf("\nYou are facing %s", monster.NameWithType())
 		for monster.HP > 0 && player.HP > 0 {
 			game.CombatRound(&player, &monster)
 		}

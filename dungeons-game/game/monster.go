@@ -1,6 +1,9 @@
 package game
 
-import "math/rand"
+import (
+	"fmt"
+	"math/rand"
+)
 
 type MonsterType string
 
@@ -31,19 +34,44 @@ var MonsterTemplates = []Monster{
 	{"Succubus", Succubus, 35, 15, false, "You'd tap that sucubussy, but you know better then to do so."},
 }
 
-// func SpawnMonster() Monster {
-// 	monsters := []Monster{
-// 		{"Sekelton", 30, 8},
-// 		{"Goblin", 30, 10},
-// 		{"Ork", 50, 12},
-// 	}
-// 	return monsters[rand.Intn(len(monsters))]
-// }
-
 func SpawnMonsterForLevel(level int) Monster {
 	template := MonsterTemplates[rand.Intn(len(MonsterTemplates))]
 	hp := template.HP + rand.Intn(level*3)
 	str := template.Strength + level/2
 
 	return Monster{template.Name, template.Type, hp, str, template.IsBoss, template.Description}
+}
+
+func (m *Monster) PreCombatEffect(player *Character) bool {
+	switch m.Type {
+	case Goblin:
+		if rand.Intn(100) < 20 {
+			fmt.Println("The Goblin dodged your attack!")
+			return true
+		}
+	case Skeleton:
+		if rand.Intn(100) < 15 {
+			fmt.Println("The skeleton blocked your attack!")
+			return true
+		}
+	case Ork:
+		if rand.Intn(100) < 10 {
+			fmt.Println("The ork is enraged!")
+			m.Strength += 5
+		}
+	case Wraith:
+		fmt.Println("The Wraith phases eerily...your armor becomes dead weight.")
+	case Demon:
+		burn := rand.Intn(3) + 2
+		player.HP -= burn
+		fmt.Printf("The Demon's fire aura burns you for %d damage!\n", burn)
+	case Succubus:
+		fmt.Println("The succubus seduces you and lowers your strength by 2! What a shame.")
+		player.Strength -= 2
+	}
+	return false
+}
+
+func (m *Monster) NameWithType() string {
+	return fmt.Sprintf("a random %s.", m.Type)
 }
