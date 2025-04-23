@@ -50,6 +50,18 @@ func main() {
 		game.TryDropItem(&player)
 		game.TryDropWeapon(&player)
 		player.Level++
-		game.OpenShop(&player)
+		fmt.Println("Would you like to open the shop (y/n)?")
+		var shopChoice string
+		fmt.Scanln(&shopChoice)
+		if shopChoice == "y" {
+			game.OpenShop(&player)
+		} else if shopChoice == "n" {
+			fmt.Println("You go past the travelling merchant, ignoring it.")
+			continue
+		} else {
+			fmt.Println("It's a yes or no question, yet you weren't able to input a simple letter. The merchant doesn't want to sell you his items. Good job, dork.")
+			continue
+		}
+
 	}
 }
