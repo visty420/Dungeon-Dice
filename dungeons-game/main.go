@@ -16,7 +16,7 @@ func main() {
 	for {
 		fmt.Printf("\n --- Level %d --- \n", player.Level)
 
-		fmt.Println("Do you wish to equip a weapon? y/n")
+		fmt.Printf("Do you wish to change your weapon?(y/n)\nYou currently have the %s equipped.\n", game.ColorizeWeapon(player.Weapon))
 		var choice string
 		fmt.Scan(&choice)
 		if choice == "y" {
