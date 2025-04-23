@@ -46,32 +46,66 @@ func (m *Monster) PreCombatEffect(player *Character) bool {
 	switch m.Type {
 	case Goblin:
 		if rand.Intn(100) < 20 {
-			fmt.Println("The Goblin dodged your attack!")
+			fmt.Printf("The %s dodged your attack!\n", m.ColorName())
 			return true
 		}
 	case Skeleton:
 		if rand.Intn(100) < 15 {
-			fmt.Println("The skeleton blocked your attack!")
+			fmt.Printf("The %s blocked your attack!\n", m.ColorName())
 			return true
 		}
 	case Ork:
 		if rand.Intn(100) < 10 {
-			fmt.Println("The ork is enraged!")
+			fmt.Printf("The %s is enraged!\n", m.ColorName())
 			m.Strength += 5
 		}
 	case Wraith:
-		fmt.Println("The Wraith phases eerily...your armor becomes dead weight.")
+		fmt.Printf("The %s phases eerily...your armor becomes dead weight.\n", m.ColorName())
 	case Demon:
 		burn := rand.Intn(3) + 2
 		player.HP -= burn
-		fmt.Printf("The Demon's fire aura burns you for %d damage!\n", burn)
+		fmt.Printf("The %ss fire aura burns you for %d damage!\n", m.ColorName(), burn)
 	case Succubus:
-		fmt.Println("The succubus seduces you and lowers your strength by 2! What a shame.")
+		fmt.Printf("The %s seduces you and lowers your strength by 2! What a shame.\n", m.ColorName())
 		player.Strength -= 2
 	}
 	return false
 }
 
 func (m *Monster) NameWithType() string {
-	return fmt.Sprintf("a random %s.", m.Type)
+	var color string
+	switch m.Type {
+	case Goblin:
+		color = ColorGreen
+	case Skeleton:
+		color = ColorWhite
+	case Ork:
+		color = ColorRed
+	case Wraith:
+		color = ColorCyan
+	case Demon:
+		color = ColorMagenta
+	case Succubus:
+		color = ColorPink
+	}
+	return fmt.Sprintf("a random %s%s%s", color, m.Type, ColorReset)
+}
+
+func (m *Monster) ColorName() string {
+	var color string
+	switch m.Type {
+	case Goblin:
+		color = ColorGreen
+	case Skeleton:
+		color = ColorWhite
+	case Ork:
+		color = ColorRed
+	case Wraith:
+		color = ColorCyan
+	case Demon:
+		color = ColorMagenta
+	case Succubus:
+		color = ColorPink
+	}
+	return fmt.Sprintf("%s%s%s", color, m.Name, ColorReset)
 }

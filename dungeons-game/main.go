@@ -55,7 +55,7 @@ func main() {
 		}
 		goldEarned := 10 + rand.Intn(5) + player.Level*2
 		player.Gold += goldEarned
-		fmt.Printf("You defeated the %s!\n", monster.Name)
+		fmt.Printf("You defeated the %s!\n", monster.ColorName())
 		fmt.Printf("You have earned %d gold coins. Total gold coins: %d\n", goldEarned, player.Gold)
 		game.TryDropItem(&player)
 		game.TryDropWeapon(&player)
