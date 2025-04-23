@@ -6,7 +6,7 @@ import (
 )
 
 func CombatRound(player *Character, monster *Monster) {
-	fmt.Println("\n---Combat Turn---")
+	fmt.Printf("\n%s=====COMBAT ROUND=====%s\n", ColorSubtitle, ColorReset)
 	if monster.PreCombatEffect(player) {
 		return
 	}

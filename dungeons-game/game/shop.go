@@ -7,8 +7,8 @@ import (
 
 func OpenShop(player *Character) {
 	for {
-		fmt.Printf("\n ----Welcome to the shop----\n")
-		fmt.Printf("Gold: %d\n", player.Gold)
+		fmt.Printf("\n%s=====WELCOME TO THE SHOP, TAINTED ONE=====%s\n", ColorTitle, ColorReset)
+		fmt.Printf("%sGold%s: %d\n", ColorImportant, ColorReset, player.Gold)
 		fmt.Println("1. Healing potion (10g)")
 		fmt.Println("2. Attack potion (15g)")
 		fmt.Println("3. Defense potion (15g)")

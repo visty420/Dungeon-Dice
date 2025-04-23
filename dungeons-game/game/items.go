@@ -119,8 +119,9 @@ func TryDropWeapon(player *Character) {
 
 func UsePotionsMenu(player *Character) {
 	for {
-		fmt.Print("\n --- Stats | Inventory --- \n")
-		fmt.Printf("HP: %d/%d | Attack Potions: %d | Armor Potions: %d | Healing Potions: %d\n", player.HP, player.MaxHP, player.AttackPotion, player.DefensePotion, player.HealingPotion)
+		fmt.Printf("\n %s --- Stats | Inventory --- %s\n", ColorSubtitle, ColorReset)
+		fmt.Printf("%sHP%s: %d/%d | %sAttack Potions%s: %d | %sArmor Potions%s: %d | %sHealing Potions%s: %d\n", ColorOrk, ColorReset,
+			player.HP, player.MaxHP, ColorInfo, ColorReset, player.AttackPotion, ColorInfo, ColorReset, player.DefensePotion, ColorInfo, ColorReset, player.HealingPotion)
 		fmt.Println("1. Use Healing potion.")
 		fmt.Println("2. Use Attack potion.")
 		fmt.Println("3. Use defense potions.")

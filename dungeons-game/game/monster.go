@@ -76,17 +76,17 @@ func (m *Monster) NameWithType() string {
 	var color string
 	switch m.Type {
 	case Goblin:
-		color = ColorGreen
+		color = ColorGoblin
 	case Skeleton:
-		color = ColorWhite
+		color = ColorSkeleton
 	case Ork:
-		color = ColorRed
+		color = ColorOrk
 	case Wraith:
-		color = ColorCyan
+		color = ColorWraith
 	case Demon:
-		color = ColorMagenta
+		color = ColorDemon
 	case Succubus:
-		color = ColorPink
+		color = ColorSuccubus
 	}
 	return fmt.Sprintf("a random %s%s%s", color, m.Type, ColorReset)
 }
@@ -95,17 +95,17 @@ func (m *Monster) ColorName() string {
 	var color string
 	switch m.Type {
 	case Goblin:
-		color = ColorGreen
+		color = ColorGoblin
 	case Skeleton:
-		color = ColorWhite
+		color = ColorSkeleton
 	case Ork:
-		color = ColorRed
+		color = ColorOrk
 	case Wraith:
-		color = ColorCyan
+		color = ColorWraith
 	case Demon:
-		color = ColorMagenta
+		color = ColorDemon
 	case Succubus:
-		color = ColorPink
+		color = ColorSuccubus
 	}
 	return fmt.Sprintf("%s%s%s", color, m.Name, ColorReset)
 }

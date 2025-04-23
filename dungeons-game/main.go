@@ -9,12 +9,12 @@ import (
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
-	fmt.Println("=== Welcome to Dungeon Dice! ===")
+	fmt.Printf("%s=== Welcome to Dungeon Dice! ===%s\n", game.ColorTitle, game.ColorReset)
 	player := game.CreateCharacter()
 	player.Level = 1
 
 	for {
-		fmt.Printf("\n --- Level %d --- \n", player.Level)
+		fmt.Printf("\n%s--- Level %d ---%s\n", game.ColorInfo, player.Level, game.ColorReset)
 
 		fmt.Printf("Do you wish to change your weapon?(y/n)\nYou currently have the %s equipped.\n", game.ColorizeWeapon(player.Weapon))
 		var choice string

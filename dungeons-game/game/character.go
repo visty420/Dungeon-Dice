@@ -38,19 +38,6 @@ const (
 	RarityLegendary = "Legendary"
 )
 
-const (
-	ColorReset   = "\033[0m"
-	ColorBlue    = "\033[34m"
-	ColorPurple  = "\033[35m"
-	ColorYellow  = "\033[33m"
-	ColorGreen   = "\033[32m"
-	ColorWhite   = "\033[96m"
-	ColorRed     = "\033[31m"
-	ColorCyan    = "\033[36m"
-	ColorMagenta = "\033[35m"
-	ColorPink    = "\033[95m"
-)
-
 func ColorizeWeapon(w Weapon) string {
 	switch w.Rarity {
 	case RarityRare:
