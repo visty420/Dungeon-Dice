@@ -67,6 +67,9 @@ func main() {
 
 		isBoss := player.Level%5 == 0 && player.Level > 0
 		var monster game.Monster
+
+		game.ClearScreen()
+
 		if isBoss {
 			monster = game.SpawnBossForLevel(player.Level)
 			fmt.Printf("\n%s\n", monster.AsciiArt)
@@ -75,6 +78,7 @@ func main() {
 		} else {
 			monster = game.SpawnMonsterForLevel(player.Level)
 			fmt.Printf("\nYou enocunter a %s\n", monster.ColorName())
+			game.Countdown(2)
 		}
 		fmt.Printf("\nYou are facing %s", monster.NameWithType())
 		for monster.HP > 0 && player.HP > 0 {

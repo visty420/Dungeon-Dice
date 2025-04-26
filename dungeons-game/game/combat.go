@@ -14,6 +14,7 @@ func CombatRound(player *Character, monster *Monster) {
 	monsterRoll := rand.Intn(20) + 1
 
 	fmt.Printf("You roll: %d \n", playerRoll)
+	Countdown(2)
 	fmt.Printf("The %s rolls: %d\n", monster.ColorName(), monsterRoll)
 
 	if player.Stunned {
@@ -58,6 +59,9 @@ func CombatRound(player *Character, monster *Monster) {
 		monster.HP -= damage
 		fmt.Printf("You have hit the %s for %d damage! MonsterHP: %d\n", monster.ColorName(), damage, monster.HP)
 	} else {
+		if monster.IsBoss {
+			monster.UseSpecialMove(player)
+		}
 		damage := monsterRoll - playerRoll - player.Defense - player.TempDefenseBoost
 		if damage < 0 {
 			damage = 0

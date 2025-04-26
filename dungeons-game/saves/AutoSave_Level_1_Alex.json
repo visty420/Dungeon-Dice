@@ -1,13 +1,13 @@
 {
  "Name": "Alex",
  "Class": "Warrior",
- "HP": 60,
+ "HP": 82,
  "MaxHP": 100,
  "Strength": 15,
  "Defense": 10,
  "HealingPotion": 0,
  "DefensePotion": 0,
- "AttackPotion": 1,
+ "AttackPotion": 0,
  "Level": 1,
  "Weapon": {
   "Name": "Sword",
@@ -33,9 +33,15 @@
    "DamageBonus": 2,
    "Description": "A pocket dagger used for staby staby actions. It's quite shit but it sounds cool!",
    "Rarity": "Common"
+  },
+  {
+   "Name": "Flaming sword",
+   "DamageBonus": 10,
+   "Description": "Engulfed in the God Emperor's holy fire",
+   "Rarity": "Epic"
   }
  ],
- "Gold": 96,
+ "Gold": 66,
  "TempAttackBoost": 0,
  "TempDefenseBoost": 0,
  "Stunned": false,
