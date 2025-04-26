@@ -10,8 +10,29 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 	fmt.Printf("%s=== Welcome to Dungeon Dice! ===%s\n", game.ColorTitle, game.ColorReset)
-	player := game.CreateCharacter()
-	player.Level = 1
+	//player := game.CreateCharacter()
+	//
+
+	fmt.Println("Do you want to (1) Start New Game or (2)Load Saved Game")
+	var saveLoadChoice int
+	fmt.Scanln(&saveLoadChoice)
+
+	var player game.Character
+
+	if saveLoadChoice == 2 {
+		loadedPlayer, err := game.LoadGameWithChoice()
+		if err != nil {
+			fmt.Println("Error loading save: ", err)
+			fmt.Println("Starting a new game instead...")
+			player = game.CreateCharacter()
+			player.Level = 1
+		} else {
+			player = *loadedPlayer
+		}
+	} else {
+		player = game.CreateCharacter()
+		player.Level = 1
+	}
 
 	for {
 		fmt.Printf("\n%s--- Level %d ---%s\n", game.ColorInfo, player.Level, game.ColorReset)
@@ -44,7 +65,7 @@ func main() {
 			fmt.Println("Cheeky choice mate -- your next encounter might be your last. But fine, continuing without opening the inventory")
 		}
 
-		isBoss := player.Level%5 == 0
+		isBoss := player.Level%5 == 0 && player.Level > 0
 		var monster game.Monster
 		if isBoss {
 			monster = game.SpawnBossForLevel(player.Level)
@@ -74,9 +95,24 @@ func main() {
 		player.Gold += goldEarned
 		fmt.Printf("You defeated the %s!\n", monster.ColorName())
 		fmt.Printf("You have earned %d gold coins. Total gold coins: %d\n", goldEarned, player.Gold)
-		game.TryDropItem(&player) //monster := game.SpawnMonsterForLevel(player.Level)
+		game.TryDropItem(&player)
 		game.TryDropWeapon(&player)
+
+		fmt.Println("You have survived this level... your journey continues...")
+		fmt.Println("Would you like to save your progress? (y/n)")
+		var saveChoice string
+		fmt.Scanln(&saveChoice)
+
+		if saveChoice == "y" || saveChoice == "Y" {
+			err := game.AutoSaveGame(&player)
+			if err != nil {
+				fmt.Println("Warning: Could not save the game:", err)
+			}
+		} else {
+			fmt.Println("Continuing without saving...")
+		}
 		player.Level++
+
 		fmt.Println("Would you like to open the shop (y/n)?")
 		var shopChoice string
 		fmt.Scanln(&shopChoice)
