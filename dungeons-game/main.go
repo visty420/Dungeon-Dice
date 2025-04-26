@@ -44,9 +44,17 @@ func main() {
 			fmt.Println("Cheeky choice mate -- your next encounter might be your last. But fine, continuing without opening the inventory")
 		}
 
-		//isBoss := player.Level%5 == 0
-
-		monster := game.SpawnMonsterForLevel(player.Level)
+		isBoss := player.Level%5 == 0
+		var monster game.Monster
+		if isBoss {
+			monster = game.SpawnBossForLevel(player.Level)
+			fmt.Printf("\n%s\n", monster.AsciiArt)
+			fmt.Printf("%s: %s\n", monster.ColorName(), monster.IntroLine)
+			fmt.Println(monster.Description)
+		} else {
+			monster = game.SpawnMonsterForLevel(player.Level)
+			fmt.Printf("\nYou enocunter a %s\n", monster.ColorName())
+		}
 		fmt.Printf("\nYou are facing %s", monster.NameWithType())
 		for monster.HP > 0 && player.HP > 0 {
 			game.CombatRound(&player, &monster)
@@ -55,11 +63,18 @@ func main() {
 			fmt.Println("You died a horrible death! RIP my homie.")
 			break
 		}
+		if monster.IsBoss {
+			fmt.Printf("\n%s: %s\n", monster.ColorName(), monster.DeathLine)
+			bonusGold := 100 + player.Level*2
+			player.Gold += bonusGold
+			fmt.Printf("You defeated the boss and earned %d bonus gold!", bonusGold)
+			game.TryDropWeapon(&player)
+		}
 		goldEarned := 10 + rand.Intn(5) + player.Level*2
 		player.Gold += goldEarned
 		fmt.Printf("You defeated the %s!\n", monster.ColorName())
 		fmt.Printf("You have earned %d gold coins. Total gold coins: %d\n", goldEarned, player.Gold)
-		game.TryDropItem(&player)
+		game.TryDropItem(&player) //monster := game.SpawnMonsterForLevel(player.Level)
 		game.TryDropWeapon(&player)
 		player.Level++
 		fmt.Println("Would you like to open the shop (y/n)?")

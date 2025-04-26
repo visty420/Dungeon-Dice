@@ -16,6 +16,19 @@ func CombatRound(player *Character, monster *Monster) {
 	fmt.Printf("You roll: %d \n", playerRoll)
 	fmt.Printf("The %s rolls: %d\n", monster.ColorName(), monsterRoll)
 
+	if player.Stunned {
+		fmt.Println("You are stunned and lose your turn!")
+		player.Stunned = false
+		return
+	}
+
+	if player.BurnDuration > 0 {
+		burnDamage := 5
+		player.HP -= burnDamage
+		fmt.Printf("You are burning! You take %d fire damage!\n", burnDamage)
+		player.BurnDuration--
+	}
+
 	if playerRoll == 1 {
 		selfDamage := rand.Intn(5) + 1
 		player.HP -= selfDamage
