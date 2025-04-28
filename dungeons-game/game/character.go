@@ -88,21 +88,6 @@ func CreateCharacter() Character {
 		}
 		break
 	}
-	// fmt.Println("Choose a weapon: ")
-	// fmt.Println("[Sword](+5 dmg), [Staff](+3 dmg), [Dagger](+2 dmg, sounds cool)")
-	// fmt.Println("You choice hero: ")
-	// fmt.Scanln(&weaponChoice)
-
-	// switch weaponChoice {
-	// case "Sword":
-	// 	selectedClass.Weapon = Weapon{"Sword", 5, "A rusty looking blade used for close combat."}
-	// case "Staff":
-	// 	selectedClass.Weapon = Weapon{"Staff", 3, "A sturdy staff that can unleash anger upon your enemies. Nerd."}
-	// case "Dagger":
-	// 	selectedClass.Weapon = Weapon{"Dagger", 2, "A pocket dagger used for staby staby actions. It's quite shit but it sounds cool!"}
-	// default:
-	// 	selectedClass.Weapon = Weapon{"Fists", 0, "You are a man of culture, you enjoy an honest brawl."}
-	// }
 	selectedClass.UnlockedWeapons = []Weapon{AllWeapons[0], AllWeapons[1], AllWeapons[2]}
 	return selectedClass
 }

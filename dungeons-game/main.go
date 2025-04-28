@@ -4,6 +4,7 @@ import (
 	"dungeons-game/game"
 	"fmt"
 	"math/rand"
+	"os"
 	"time"
 )
 
@@ -78,7 +79,6 @@ func main() {
 		} else {
 			monster = game.SpawnMonsterForLevel(player.Level)
 			fmt.Printf("\nYou enocunter a %s\n", monster.ColorName())
-			game.Countdown(2)
 		}
 		fmt.Printf("\nYou are facing %s", monster.NameWithType())
 		for monster.HP > 0 && player.HP > 0 {
@@ -115,6 +115,17 @@ func main() {
 		} else {
 			fmt.Println("Continuing without saving...")
 		}
+
+		var continueChoice string
+		fmt.Println()
+		fmt.Println("Do you wish to (c) Continue exploring the dungeon or do you wish to (q) Quit while you are still able to...")
+		fmt.Scanln(&continueChoice)
+		if continueChoice == "q" || continueChoice == "Q" {
+			fmt.Print("Your journey ends here...")
+			game.Countdown(3)
+			os.Exit(0)
+		}
+
 		player.Level++
 
 		fmt.Println("Would you like to open the shop (y/n)?")
