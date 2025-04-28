@@ -5,7 +5,10 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"strings"
 	"time"
+
+	"golang.org/x/term"
 )
 
 func ClearScreen() {
@@ -27,4 +30,21 @@ func Countdown(seconds int) {
 		time.Sleep(1 * time.Second)
 	}
 	fmt.Print("\n\r\r")
+}
+
+func CenterTextSmart(text string) {
+	width, _, err := term.GetSize(int(os.Stdout.Fd()))
+	if err != nil {
+		width = 80
+	}
+
+	lines := strings.Split(text, "\n")
+	for _, line := range lines {
+		padding := (width - len(line)) / 2
+		if padding > 0 {
+			fmt.Println(strings.Repeat("", padding) + line)
+		} else {
+			fmt.Println(line)
+		}
+	}
 }

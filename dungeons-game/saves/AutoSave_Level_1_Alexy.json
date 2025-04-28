@@ -1,0 +1,49 @@
+{
+ "Name": "Alexy",
+ "Class": "Warrior",
+ "HP": 100,
+ "MaxHP": 100,
+ "Strength": 15,
+ "Defense": 10,
+ "HealingPotion": 0,
+ "DefensePotion": 0,
+ "AttackPotion": 0,
+ "Level": 1,
+ "Weapon": {
+  "Name": "Sword",
+  "DamageBonus": 5,
+  "Description": "A rusty looking blade used for close combat.",
+  "Rarity": "Common"
+ },
+ "UnlockedWeapons": [
+  {
+   "Name": "Sword",
+   "DamageBonus": 5,
+   "Description": "A rusty looking blade used for close combat.",
+   "Rarity": "Common"
+  },
+  {
+   "Name": "Staff",
+   "DamageBonus": 3,
+   "Description": "A sturdy staff that can unleash anger upon your enemies. Nerd.",
+   "Rarity": "Common"
+  },
+  {
+   "Name": "Dagger",
+   "DamageBonus": 2,
+   "Description": "A pocket dagger used for staby staby actions. It's quite shit but it sounds cool!",
+   "Rarity": "Common"
+  },
+  {
+   "Name": "Magic Wand",
+   "DamageBonus": 6,
+   "Description": "A wand bestowed to you by ancient powers.",
+   "Rarity": "Rare"
+  }
+ ],
+ "Gold": 62,
+ "TempAttackBoost": 0,
+ "TempDefenseBoost": 0,
+ "Stunned": false,
+ "BurnDuration": 0
+}

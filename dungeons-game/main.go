@@ -10,10 +10,7 @@ import (
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
-	fmt.Printf("%s=== Welcome to Dungeon Dice! ===%s\n", game.ColorTitle, game.ColorReset)
-	//player := game.CreateCharacter()
-	//
-
+	game.ShowSplashScreen()
 	fmt.Println("Do you want to (1) Start New Game or (2)Load Saved Game")
 	var saveLoadChoice int
 	fmt.Scanln(&saveLoadChoice)
@@ -73,12 +70,22 @@ func main() {
 
 		if isBoss {
 			monster = game.SpawnBossForLevel(player.Level)
-			fmt.Printf("\n%s\n", monster.AsciiArt)
-			fmt.Printf("%s: %s\n", monster.ColorName(), monster.IntroLine)
-			fmt.Println(monster.Description)
+			game.ClearScreen()
+			game.CenterTextSmart(monster.AsciiArt)
+			fmt.Println()
+			game.CenterTextSmart(fmt.Sprintf("\nYou enocunter a %s\n", monster.ColorName()))
+			fmt.Println()
+			game.CenterTextSmart(monster.Description)
+			fmt.Println()
 		} else {
 			monster = game.SpawnMonsterForLevel(player.Level)
-			fmt.Printf("\nYou enocunter a %s\n", monster.ColorName())
+			game.ClearScreen()
+			game.CenterTextSmart(monster.AsciiArt)
+			fmt.Println()
+			game.CenterTextSmart(fmt.Sprintf("\nYou enocunter a %s\n", monster.ColorName()))
+			fmt.Println()
+			game.CenterTextSmart(monster.Description)
+			fmt.Println()
 		}
 		fmt.Printf("\nYou are facing %s", monster.NameWithType())
 		for monster.HP > 0 && player.HP > 0 {

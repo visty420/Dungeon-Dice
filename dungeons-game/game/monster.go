@@ -29,18 +29,18 @@ type Monster struct {
 }
 
 var MonsterTemplates = []Monster{
-	{"Goblin", Goblin, 30, 8, false, "A sneaky little creature with sharp teeth.", "A green creature approaches you!", "You slay the green creature", "AsciiArt here"},
-	{"Skeleton", Skeleton, 40, 10, false, "Clattering bones that won't stay down,", "You encounter a restless pile of bones.", "You have granted peace to the pile of bones", "AsciiArt here"},
-	{"Ork", Ork, 50, 12, false, "Strong, brutal and always looking for a scrap.", "A red angry ork abushes you!", "You have slain the strange creature", "AsciiArt here"},
-	{"Wraith", Wraith, 35, 14, false, "It strikes from the shadows and ignores your armor,", "You can hardly see a transparent ghost.", "You banished the ghost.", "Ascii art here"},
-	{"Demon", Demon, 60, 16, false, "Burns everything it touches.", "A creature from hell is blocking your path", "You exorcize the demon, sending it to the depths of hell.", "Ascii art here"},
-	{"Succubus", Succubus, 35, 15, false, "You'd tap that sucubussy, but you know better then to do so.", "You encounter a creature that stirs your interest.", "After coming to your senses, you feel the creature's treachery and banish it from existence.", "AsciiArt here"},
+	{"Goblin", Goblin, 30, 8, false, "A sneaky little creature with sharp teeth.", "A green creature approaches you!", "You slay the green creature", GoblinArt},
+	{"Skeleton", Skeleton, 40, 10, false, "Clattering bones that won't stay down,", "You encounter a restless pile of bones.", "You have granted peace to the pile of bones", SkeletonArt},
+	{"Ork", Ork, 50, 12, false, "Strong, brutal and always looking for a scrap.", "A red angry ork abushes you!", "You have slain the strange creature", OrcArt},
+	{"Wraith", Wraith, 35, 14, false, "It strikes from the shadows and ignores your armor,", "You can hardly see a transparent ghost.", "You banished the ghost.", WraithArt},
+	{"Demon", Demon, 60, 16, false, "Burns everything it touches.", "A creature from hell is blocking your path", "You exorcize the demon, sending it to the depths of hell.", DemonArt},
+	{"Succubus", Succubus, 35, 15, false, "You'd tap that sucubussy, but you know better then to do so.", "You encounter a creature that stirs your interest.", "After coming to your senses, you feel the creature's treachery and banish it from existence.", SuccubusArt},
 }
 
 var Bosses = []Monster{
-	{"Bone Crusher", Skeleton, 150, 25, true, "An ancient titan of bone and hatred. It swings with unstoppable force.", "-You dare approach me mortal? This carcass has a lot of fight left in it!", "-This cannot happen! DAMN YOU HERO!", "AsciiArt here"},
-	{"Inferna, Flame Witch", Demon, 130, 30, true, "Her eyes glow like embers. Her eyes.. a burning whisper.", "You dare stand against me?", "Even though my form from this realm is broken, I will curse upon you from hell!", "AsciiArt here"},
-	{"The Lich King", Wraith, 160, 28, true, "The air freezes. Time slows. Death watches you from behind hollow eyes.", "You have finally come to meet me, messenger. Let me teach you something....", "You might have banished me and beaten the game, but my tainted touch is all over this realm!", "AsciiArt here"},
+	{"Bone Crusher", Skeleton, 150, 25, true, "An ancient titan of bone and hatred. It swings with unstoppable force.", "-You dare approach me mortal? This carcass has a lot of fight left in it!", "-This cannot happen! DAMN YOU HERO!", BoneCrusherArt},
+	{"Inferna, Flame Witch", Demon, 130, 30, true, "Her eyes glow like embers. Her eyes.. a burning whisper.", "You dare stand against me?", "Even though my form from this realm is broken, I will curse upon you from hell!", InfernaArt},
+	{"The Lich King", Wraith, 160, 28, true, "The air freezes. Time slows. Death watches you from behind hollow eyes.", "You have finally come to meet me, messenger. Let me teach you something....", "You might have banished me and beaten the game, but my tainted touch is all over this realm!", LichKingArt},
 }
 
 func SpawnMonsterForLevel(level int) Monster {
